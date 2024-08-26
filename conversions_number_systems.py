@@ -11,7 +11,7 @@ Hexadecimal = "7B316_16"
 More conversions to come.
 """
 
-BASE_10  = "_10"
+BASE_10  = "_10"  # speeds up typing dont have to type quotations :)
 BASE_2 = "_2"
 
 # returns the number without suffix
@@ -29,6 +29,8 @@ def get_integer_part(number):
 def get_floating_part(number):
     indx = number.index(".")
     return number[indx:]
+
+
 
 # in reverse order sum the products of the binary digit and its 2 to the power of digits index
 def binary_to_decimal(binary):
