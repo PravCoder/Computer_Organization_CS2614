@@ -31,6 +31,19 @@ def binary_to_decimal(binary):
     decimal = str(int(decimal_int)) + BASE_10  # convert to int ot remove .0
     return decimal
 
+def decimal_to_binary(decimal):
+    decimal_num = int(strip_suffix(decimal))
+    
+    remainder_str = ""  # stores binary digits / remainders
+    quotient = decimal_num  # initally set quotient to original decimal to be divided
+    while quotient != 0:   # keep dividing until quotient is zero
+        cur_remainder = quotient % 2        # remainder is the cur-quotient (what we just divided) modulo 2, compute remainder before quotient because qwhen we compute quotient it becomes new quotient for next division
+        quotient = quotient // 2         # int division to get quotient, divide quotient of previous division
+        remainder_str += str(cur_remainder) # add remainder which is binary digit to string
+        # print(quotient, cur_remainder)
+    remainder_str = remainder_str[::-1] # reverse binary digits
+    return remainder_str + BASE_2
+
 
 def main():
 
@@ -38,6 +51,11 @@ def main():
     binary = "10101010101011" + BASE_2
     decimal = binary_to_decimal(binary)
     print(f"binary {binary} is decimal {decimal}")
+
+    print("\nConvert decimal to binary")
+    decimal = "1231" +  BASE_10
+    binary = decimal_to_binary(decimal)
+    print(f"decimal {decimal} is binary {binary}")
 
 if __name__ == "__main__":
     main()
