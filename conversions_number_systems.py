@@ -8,6 +8,7 @@ Decimal = "75_10"
 Octal = "11_8"
 Hexadecimal = "7B316_16"
 
+More conversions to come.
 """
 
 BASE_10  = "_10"
@@ -15,8 +16,11 @@ BASE_2 = "_2"
 
 # returns the number without suffix
 def strip_suffix(number):
-    indx = number.index("_")
-    return number[0:indx]
+    if "_" in number:
+        indx = number.index("_")
+        return number[0:indx]
+    else:
+        return number
 # returns the integer part of a decimal omitting floating part
 def get_integer_part(number):
     indx = number.index(".")
@@ -42,6 +46,8 @@ def binary_to_decimal(binary):
 
 # keep divding decimal by 2 until quotient is zero, then compile/reverse remainders of divisions
 def decimal_to_binary(decimal):
+    if decimal == "0_10": return "0000"+BASE_2
+    # print(f"FLAG:{decimal}")
     decimal_num = int(strip_suffix(decimal))
     
     remainder_str = ""  # stores binary digits / remainders
@@ -54,6 +60,7 @@ def decimal_to_binary(decimal):
     remainder_str = remainder_str[::-1] # reverse binary digits
     return remainder_str + BASE_2
 
+# first convert ineger part to binary noramlly then keep multiplying the fraction part of decimal by 2 (only multiply the fraction part of teh fraction part) until the fraction part's fraction part is all zeros, then compile the integer parts of all the fraction parts.
 def floating_point_decimal_to_binary(decimal, precision=20):  # precision to prevent infinte loop, gives approximation
     integer_part = get_integer_part(decimal)   # get integer part of floating-point representation
     integer_part_binary = decimal_to_binary(integer_part)  # convert only integer part to binary
@@ -91,7 +98,7 @@ def floating_point_decimal_to_binary(decimal, precision=20):  # precision to pre
     return final_binary
 
 def main():
-
+    # input to functions is the string repsentation I defined
     print("Convert binary to decimal")
     binary = "10101010101011" + BASE_2
     decimal = binary_to_decimal(binary)
