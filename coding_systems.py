@@ -6,6 +6,7 @@ represented as string "00010000_BCD"
 
 Gray Code [GC] only 1 bit changes between adjacent codes
 represented as string ""1010101_GC"
+
 """
 from conversions_number_systems import decimal_to_binary, strip_suffix, BASE_10, BASE_2
 
