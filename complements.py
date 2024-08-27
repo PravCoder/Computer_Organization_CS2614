@@ -25,11 +25,41 @@ def r_minus_1s_complement(number):
     if "_2" in number:
         pass
 
+# write zeors for aech bit until you reach first one, then keep that one and after that one invert all bits. 
+def r_2s_complement(binary):
+    binary = strip_suffix(binary)
+    r2s = ""
+    found_first_one = False
+    for i in range(len(binary)-1, -1, -1):  # iterate from right to left
+        print(binary[i])
+        if found_first_one == False:
+            if binary[i] == "0":
+                r2s += "0"
+                continue
+            if binary[i] == "1":
+                r2s +=  "1"  # keep first one
+                found_first_one = True
+                print("YESS")
+                continue
+        if found_first_one == True:
+            if binary[i] == "0":
+                r2s += "1"
+                continue
+            if binary[i] == "1":
+                r2s += "0"
+                continue
+    return r2s[::-1] + BASE_2  # reverse because we loop reverse and add to enw str-r2s
+
 def main():
     print("\nCompute (r-1)'s complement")
     decimal = "57" + BASE_10
     r_m_1_comp = r_minus_1s_complement(decimal)
     print(f"decimal {decimal}'s (r-1)'s complement is {r_m_1_comp}")
+
+    print("\nCompute 2's complement")
+    binary = "11010" + BASE_2
+    r_2s_comp = r_2s_complement(binary)
+    print(f"binary {binary}'s r2's complement is {r_2s_comp}")
 
 
 
