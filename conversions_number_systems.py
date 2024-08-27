@@ -14,6 +14,7 @@ More conversions to come.
 BASE_10  = "_10"  # speeds up typing dont have to type quotations :)
 BASE_2 = "_2"
 
+# HELPER FUNCTIONS
 # returns the number without suffix
 def strip_suffix(number):
     if "_" in number:

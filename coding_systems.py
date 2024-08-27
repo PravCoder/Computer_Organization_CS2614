@@ -10,6 +10,7 @@ represented as string ""1010101_GC"
 """
 from conversions_number_systems import decimal_to_binary, strip_suffix, BASE_10, BASE_2
 
+# HELPER FUNCTIONS
 BCD = "_BCD"
 GC = "_GC"
 
