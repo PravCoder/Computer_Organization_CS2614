@@ -28,26 +28,32 @@ def move_dot(number):  # moves dot to the right until there is on number on the 
 def get_bits_before_dot(number):
     dot_indx =  number.index(".")
     return number[0:dot_indx] # exclusive
+def get_bits_after_dot(number):
+    dot_indx =  number.index(".")
+    return number[dot_indx+1:] # exclusive
 
 def decimal_to_floating_point_IEEE(N):
     N_ns = strip_suffix(N) # no suffix N
     N_binary = floating_point_decimal_to_binary(N)
     N_binary_before_dot_move = N_binary
-    # print( N_binary_before_dot_move)
+    print(f"{N_binary_before_dot_move=}")
 
     N_binary, num_dot_moved = move_dot(N_binary)
     exponent = num_dot_moved + EXPONENT_BIAS  # int
-    # print(N_binary, num_dot_moved, exponent)
+    print(f"After dot move: {N_binary=}, {exponent=}")
 
     binary_exponent = decimal_to_binary(str(exponent)+BASE_10)
     if len(strip_suffix(binary_exponent)) == 7:  # add zero to get number correct 8 number of bits
         binary_exponent=  "0"+binary_exponent
-    # print(binary_exponent)
+    print(f"{binary_exponent=}")
 
     sign_bit = "1" if "-" in N else "0"  
-    print(sign_bit)
-    bits_before_dot = get_bits_before_dot(N_binary_before_dot_move)
-    mantissa = ""+bits_before_dot
+    print(f"{sign_bit=}")
+
+    bits_after_dot = get_bits_after_dot(N_binary)  # after moving the dot get the bits after the dot
+    mantissa = ""+bits_after_dot
+    mantissa = strip_suffix(mantissa)
+    print(f"{mantissa=},     {N_binary_before_dot_move=}")
     while len(mantissa) < 23:  # keep adding zeros until we get 23-bits for mantissa
         mantissa += "0"   
     
@@ -56,7 +62,7 @@ def decimal_to_floating_point_IEEE(N):
 
 def main():
     print("\nCompute decimal to floating point representation IEEEs")
-    decimal = "1.5" + BASE_10
+    decimal = "1.3" + BASE_10
     float = decimal_to_floating_point_IEEE(decimal)
     print(f"decimal {decimal}'s floating IEEE is {float}")
 

@@ -65,10 +65,11 @@ def decimal_to_binary(decimal):
 
 # first convert ineger part to binary noramlly then keep multiplying the fraction part of decimal by 2 (only multiply the fraction part of teh fraction part) until the fraction part's fraction part is all zeros, then compile the integer parts of all the fraction parts.
 def floating_point_decimal_to_binary(decimal, precision=20):  # precision to prevent infinte loop, gives approximation
+    
     integer_part = get_integer_part(decimal)   # get integer part of floating-point representation
     integer_part_binary = decimal_to_binary(integer_part)  # convert only integer part to binary
     i = 0  # just a counter
-    print(f"Integer part binary: {integer_part_binary}")
+    # print(f"Integer part binary: {integer_part_binary}")
 
     floating_part = float(strip_suffix(get_floating_part(decimal)))
 
