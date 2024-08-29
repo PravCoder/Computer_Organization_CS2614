@@ -1,6 +1,6 @@
 
 """
-Tools for building logic ciruits and boolean expressions. 
+Tools for building/evaluating logic ciruits and boolean expressions. 
 """
 
 
