@@ -60,8 +60,10 @@ def decimal_to_floating_point_IEEE(N):
     ieee_float = ""+sign_bit +"_"+ strip_suffix(binary_exponent) +"_"+ mantissa
     return ieee_float
 
+
 def main():
-    print("\nCompute decimal to floating point representation IEEEs")
+    # Note doesn't work for negative decimals
+    print("\Convert decimal to floating point representation IEEEs")
     decimal = "1.3" + BASE_10
     float = decimal_to_floating_point_IEEE(decimal)
     print(f"decimal {decimal}'s floating IEEE is {float}")
