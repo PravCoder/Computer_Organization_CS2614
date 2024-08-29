@@ -18,6 +18,6 @@ more to come
 ### Complements
 - Compute (r-1)'s complement for decimal.
 - Compute 2's complement for binary.
-- 
+
 ### Floating Point Representation
 - Convert decimal to IEEE floating point representation. 
