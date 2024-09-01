@@ -13,6 +13,25 @@ More conversions to come.
 
 BASE_10  = "_10"  # speeds up typing dont have to type quotations :)
 BASE_2 = "_2"
+BASE_8 = "_8"
+BINARY_TO_OCTAL = {
+    '0000': '0',
+    '0001': '1',
+    '0010': '2',
+    '0011': '3',
+    '0100': '4',
+    '0101': '5',
+    '0110': '6',
+    '0111': '7',
+    '1000': '10',
+    '1001': '11',
+    '1010': '12',
+    '1011': '13',
+    '1100': '14',
+    '1101': '15',
+    '1110': '16',
+    '1111': '17'
+}
 
 # HELPER FUNCTIONS
 # returns the number without suffix
@@ -46,6 +65,37 @@ def binary_to_decimal(binary):
 
     decimal = str(int(decimal_int)) + BASE_10  # convert to int ot remove .0
     return decimal
+
+#  input binary-string has to be length of multiple 3 doesn't handle case where it is not.
+def binary_to_octal(binary):
+    binary = strip_suffix(binary)
+    groups_of_three = []
+    i = len(binary)-1
+    while i >= 0:
+        three_group = ""
+        if i-2 >= 0:
+            three_group += (binary[i-2] + binary[i-1] + binary[i])
+            i = i-3
+        else:
+            print(f"{i=}, {three_group=}")
+            three_group += binary[0:i]
+            print(f"{i=}, {three_group=}")
+            groups_of_three.append(three_group)
+            break
+
+        groups_of_three.append(three_group)
+    
+    groups_of_three.reverse()
+    for i, group in enumerate(groups_of_three):
+        while len(groups_of_three[i]) < 4: # because keys in dict are length 4
+            groups_of_three[i] =  groups_of_three[i][:0] + '0' + groups_of_three[i][0:] # insert zero at beginning of string
+    print(groups_of_three)
+
+    octal = ""
+    for group in groups_of_three:
+        octal += BINARY_TO_OCTAL[group]
+    
+    return octal+BASE_8
 
 # keep divding decimal by 2 until quotient is zero, then compile/reverse remainders of divisions
 def decimal_to_binary(decimal):
@@ -117,6 +167,11 @@ def main():
     decimal = "12.34" +  BASE_10
     binary = floating_point_decimal_to_binary(decimal)
     print(f"floating decimal {decimal} is binary {binary}")
+
+    print("Convert binary to octal")
+    binary = "010110101" + BASE_2
+    octal = binary_to_octal(binary)
+    print(f"binary {binary} is octal {octal}")
 
 if __name__ == "__main__":
     main()

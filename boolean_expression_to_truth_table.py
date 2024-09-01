@@ -112,6 +112,7 @@ class BooleanExpression_TruthTable_Converter:
 
 
 def main():
+    # https://cs.coursemo.com/bee/
     # same as (A AND B) AND (A OR B), 
     # order matters each command has a id and the gate and the inputs, inputs can be A/B or the id of another command which the value of that command.
     bool_expression = ["1-AND(A,B)", "2-OR(A,B)", "3-AND(1,2)"] 
