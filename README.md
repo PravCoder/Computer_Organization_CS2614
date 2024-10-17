@@ -21,3 +21,12 @@ more to come
 
 ### Floating Point Representation
 - Convert decimal to IEEE floating point representation. 
+
+### Future
+- Board simulator.
+- Equation to breadboard. 
+- Given decimal,octal,hexadecimal,binary number find its 2s complement representation
+- Karnaugh Map Simplification
+- binary arithmatic
+- Train neural network to capture relationship of converting binary number to decimal. create random dataset.
+
